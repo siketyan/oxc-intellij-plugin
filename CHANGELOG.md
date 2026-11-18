@@ -4,6 +4,19 @@
 
 ## [Unreleased]
 
+### Added
+
+- Support for 2026.3 (263).
+
+### Removed
+
+- **Breaking:** Drop support for IDE versions older than 2026.3 (263). 2026.3 has binary-incompatible changes in the bundled
+  Kotlin standard library and LSP4J, so a single build cannot support both. Use plugin version 0.0.45 for older IDEs.
+
+### Changed
+
+- Build with Kotlin 2.4 and target JVM 25, as required by 2026.3.
+
 ## [0.0.45] - 2026-10-15
 
 ### Added

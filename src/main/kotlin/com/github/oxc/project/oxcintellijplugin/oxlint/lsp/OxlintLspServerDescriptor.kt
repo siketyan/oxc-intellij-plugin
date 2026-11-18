@@ -4,6 +4,7 @@ import com.github.oxc.project.oxcintellijplugin.LspDisabledCustomization
 import com.github.oxc.project.oxcintellijplugin.OxcTargetRun
 import com.github.oxc.project.oxcintellijplugin.OxcTargetRunBuilder
 import com.github.oxc.project.oxcintellijplugin.ProcessCommandParameter
+import com.github.oxc.project.oxcintellijplugin.lsp.targetFileUri
 import com.github.oxc.project.oxcintellijplugin.oxlint.OxlintPackage
 import com.github.oxc.project.oxcintellijplugin.oxlint.settings.OxlintSettings
 import com.intellij.execution.configurations.GeneralCommandLine
@@ -45,8 +46,8 @@ class OxlintLspServerDescriptor(
     override fun startServerProcess(): OSProcessHandler =
         targetRun.startProcess()
 
-    override fun getFilePath(file: VirtualFile): String =
-        targetRun.toTargetPath(file.path)
+    override fun getFileUri(file: VirtualFile): String =
+        targetFileUri(file, targetRun::toTargetPath) ?: super.getFileUri(file)
 
     override fun findLocalFileByPath(path: String): VirtualFile? =
         super.findLocalFileByPath(targetRun.toLocalPath(path))
